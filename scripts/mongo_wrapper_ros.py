@@ -54,8 +54,10 @@ if "--repair" in sys.argv:
     sys.exit(0)
 
 # The defaults here should match the ones used by each client library
-port = rospy.get_param("warehouse_port", 27017)
-host = rospy.get_param("warehouse_host", "localhost")
+default_port = 27017
+port = rospy.get_param("~warehouse_port", default_port)
+default_host = "localhost"
+host = rospy.get_param("~warehouse_host", default_host)
 
 if overwrite and os.path.exists(dbpath):
     rospy.loginfo("Removed existing db at %s", dbpath)
